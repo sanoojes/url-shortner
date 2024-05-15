@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <title>Url Shortner</title>
+  </head>
+  <body>
+    <main>
+      <section class="form-section">
+        <h1>URL Shortner</h1>
+        <form action="/submit" method="post">
+          <label for="longurl" class="sr-only">Long Url</label>
+          <input
+            class="input-url"
+            type="url"
+            name="longUrl"
+            placeholder="Enter your LongURL here."
+            required
+          />
+          <button class="submit-btn" type="submit">Submit</button>
+        </form>
+      </section>
+      <section class="table-section">
+        <h1>List of ShortUrls</h1>
+        <ul class="responsive-table">
+          <li class="table-header">
+            <div class="col col-1">Full Url</div>
+            <div class="col col-2">Short Url</div>
+            <div class="col col-3">Clicks</div>
+          </li>
+          <% shortUrls.forEach(shortUrl => { %>
+          <li class="table-row">
+            <div class="col col-1">
+              <a href="<%= shortUrl.longUrl %>"><%= shortUrl.longUrl %></a>
+            </div>
+            <div class="col col-2">
+              <a href="<%= shortUrl.shortendUrl %>"
+                ><%= shortUrl.shortendUrl %></a
+              >
+            </div>
+            <div class="col col-3"><%= shortUrl.clicks %></div>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
