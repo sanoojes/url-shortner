@@ -1,4 +1,5 @@
 import mongoose, { Schema, model } from 'mongoose';
+import 'dotenv/config';
 
 const urlShema = new Schema({
   longUrl: String,
@@ -7,7 +8,7 @@ const urlShema = new Schema({
   date: Date,
 });
 
-mongoose.connect('mongodb://localhost:27017/UrlShortner');
+mongoose.connect(process.env.MONGODB_URL);
 
 export const urlDB = model('UrlShortner', urlShema);
 
@@ -19,7 +20,7 @@ export const saveToDB = async (longUrl, shortendUrl, date, clicks = 0) => {
       date,
       clicks,
     });
-    console.log('Added new url to db');
+    console.log('Added new url to db :', newUrl);
   } catch (error) {
     console.error(error);
   }
